@@ -52,12 +52,12 @@ module.exports = ___CSS_LOADER_EXPORT___;
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/login.vue?vue&type=template&id=495aa2ef&
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/login.vue?vue&type=template&id=573c2f21&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container_login"},[_vm._ssrNode("<h3 class=\"login\"></h3> <div class=\"login_form\"><p class=\"phone\"><input type=\"text\" placeholder=\"输入手机号\""+(_vm._ssrAttr("value",(_vm.phone)))+"><span>×</span></p> <p class=\"phone verification\"><input type=\"password\" placeholder=\"首次登录为注册\""+(_vm._ssrAttr("value",(_vm.password)))+"></p> <p class=\"login_btn\"><input type=\"button\" value=\"登录\"></p> <p class=\"user_trans\">未注册用户登录将自动创建报哪好账号，<b>即视为您已同意</b><a href>《报哪好用户服务协议》</a></p></div>")])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./pages/login.vue?vue&type=template&id=495aa2ef&
+// CONCATENATED MODULE: ./pages/login.vue?vue&type=template&id=573c2f21&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./pages/login.vue?vue&type=script&lang=js&
 //
@@ -123,8 +123,7 @@ var staticRenderFns = []
     }
 
   },
-  components: {
-    layerMsg
+  components: {// layerMsg
   }
 });
 // CONCATENATED MODULE: ./pages/login.vue?vue&type=script&lang=js&
