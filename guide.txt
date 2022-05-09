@@ -1,0 +1,12 @@
+此部分及头部部分需要使用sass，用到以下2个模块，上传至阿里云上无法yarn install整体安装，因此需要在阿里云上手动安装
+"node-sass": "^6.0.0",
+"sass-loader": "^10.1.1"
+
+安装命令如下（仍无法解决）
+npm install -D sass-loader node-sass  在windows 上安装
+yarn add sass-loader node-sass --dev  在阿里云上安装
+
+需安装淘宝镜像
+yarn global add cnpm
+cnpm install node-sass --save-dev
+cnpm install sass-loader --save-dev

@@ -1,0 +1,27 @@
+{
+  "entry": "server.js",
+  "files": {
+    "components/carousel-cov-touch.js": "components/carousel-cov-touch.js",
+    "components/carousel-vue-slide.js": "components/carousel-vue-slide.js",
+    "components/carousel.js": "components/carousel.js",
+    "components/home-myheader.js": "components/home-myheader.js",
+    "components/nuxt-logo.js": "components/nuxt-logo.js",
+    "components/tutorial.js": "components/tutorial.js",
+    "pages/About/index.js": "pages/About/index.js",
+    "pages/index.js": "pages/index.js",
+    "pages/login.js": "pages/login.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "components/carousel-cov-touch.js": "components/carousel-cov-touch.js.map",
+    "components/carousel-vue-slide.js": "components/carousel-vue-slide.js.map",
+    "components/carousel.js": "components/carousel.js.map",
+    "components/home-myheader.js": "components/home-myheader.js.map",
+    "components/nuxt-logo.js": "components/nuxt-logo.js.map",
+    "components/tutorial.js": "components/tutorial.js.map",
+    "pages/About/index.js": "pages/About/index.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "pages/login.js": "pages/login.js.map",
+    "server.js": "server.js.map"
+  }
+}

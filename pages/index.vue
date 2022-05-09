@@ -1,9 +1,16 @@
 <template>
-  <!-- <Tutorial/> -->
-  <Myheader></Myheader>
+<transition name='index'> 
+    <div class="body">
+      <Myheader></Myheader>
+      <Carousel></Carousel>
+   </div>
+  </transition> 
 </template>
 
 <script>
+import Myheader from '~/components/home/Myheader.vue'
+import Carousel from '~/components/carousel/Carousel.vue'
+
 export default {
   layout: 'mystyle',
 
@@ -33,8 +40,8 @@ export default {
     }
   },
   components: {
-    // Myheader,
-    // Carousel,
+    Myheader,
+    Carousel,
     // Classification,
     // RecommendedSchools,
     // Grabactivity,

@@ -1,6 +1,9 @@
-export { default as Myheader } from '../..\\components\\Myheader.vue'
-export { default as NuxtLogo } from '../..\\components\\NuxtLogo.vue'
-export { default as Tutorial } from '../..\\components\\Tutorial.vue'
+export const NuxtLogo = () => import('../..\\components\\NuxtLogo.vue' /* webpackChunkName: "components/nuxt-logo" */).then(c => wrapFunctional(c.default || c))
+export const Tutorial = () => import('../..\\components\\Tutorial.vue' /* webpackChunkName: "components/tutorial" */).then(c => wrapFunctional(c.default || c))
+export const Carousel = () => import('../..\\components\\carousel\\Carousel.vue' /* webpackChunkName: "components/carousel" */).then(c => wrapFunctional(c.default || c))
+export const CarouselCovTouch = () => import('../..\\components\\carousel\\cov-touch.js' /* webpackChunkName: "components/carousel-cov-touch" */).then(c => wrapFunctional(c.default || c))
+export const CarouselVueSlide = () => import('../..\\components\\carousel\\vue-slide.vue' /* webpackChunkName: "components/carousel-vue-slide" */).then(c => wrapFunctional(c.default || c))
+export const HomeMyheader = () => import('../..\\components\\home\\Myheader.vue' /* webpackChunkName: "components/home-myheader" */).then(c => wrapFunctional(c.default || c))
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

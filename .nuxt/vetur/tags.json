@@ -1,11 +1,20 @@
 {
-  "Myheader": {
-    "description": "Auto imported from components/Myheader.vue"
-  },
   "NuxtLogo": {
     "description": "Auto imported from components/NuxtLogo.vue"
   },
   "Tutorial": {
     "description": "Auto imported from components/Tutorial.vue"
+  },
+  "Carousel": {
+    "description": "Auto imported from components/carousel/Carousel.vue"
+  },
+  "CarouselCovTouch": {
+    "description": "Auto imported from components/carousel/cov-touch.js"
+  },
+  "CarouselVueSlide": {
+    "description": "Auto imported from components/carousel/vue-slide.vue"
+  },
+  "HomeMyheader": {
+    "description": "Auto imported from components/home/Myheader.vue"
   }
 }
