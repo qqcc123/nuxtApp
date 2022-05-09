@@ -1,5 +1,19 @@
 [
   {
+    "name": "About",
+    "path": "/About",
+    "component": "D:\\\\WebNewStart\\\\nuxtApp\\\\pages\\\\About\\\\index.vue",
+    "chunkName": "pages/About/index",
+    "_name": "_d28dac66"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "D:\\\\WebNewStart\\\\nuxtApp\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_48e5d1de"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "D:\\\\WebNewStart\\\\nuxtApp\\\\pages\\\\index.vue",
