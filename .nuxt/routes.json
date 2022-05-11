@@ -7,6 +7,13 @@
     "_name": "_d28dac66"
   },
   {
+    "name": "coursehome",
+    "path": "/coursehome",
+    "component": "D:\\\\WebNewStart\\\\nuxtApp\\\\pages\\\\coursehome.vue",
+    "chunkName": "pages/coursehome",
+    "_name": "_2fbadd82"
+  },
+  {
     "name": "login",
     "path": "/login",
     "component": "D:\\\\WebNewStart\\\\nuxtApp\\\\pages\\\\login.vue",

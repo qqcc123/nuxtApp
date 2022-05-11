@@ -67,3 +67,16 @@ More information about the usage of this directory in [the documentation](https:
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+
+### 阿里云和windows上版本不一致，因此部分库依赖版本也不一样，后期同步版本
+windows:
+"devDependencies": { 
+    "node-sass": "^6.0.0", 
+    "sass-loader": "^10.1.1"
+}
+
+阿里云：
+"devDependencies": {
+    "node-sass": "^7.0.1",
+    "sass-loader": "^12.6.0"
+}

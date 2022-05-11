@@ -137,7 +137,7 @@ header .course_share {
   height: 35px;
   background: url(../img/icon_share.png) no-repeat right center;
   background-size: 15px 15px;
-  display: inline-block;
+  display: inline-block; 
 }
 header .fl {
   float: left;

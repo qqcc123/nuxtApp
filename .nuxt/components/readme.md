@@ -11,4 +11,5 @@ You can directly use them in pages and other components without the need to impo
 - `<Carousel>` | `<carousel>` (components/carousel/Carousel.vue)
 - `<CarouselCovTouch>` | `<carousel-cov-touch>` (components/carousel/cov-touch.js)
 - `<CarouselVueSlide>` | `<carousel-vue-slide>` (components/carousel/vue-slide.vue)
+- `<HomeClassification>` | `<home-classification>` (components/home/Classification.vue)
 - `<HomeMyheader>` | `<home-myheader>` (components/home/Myheader.vue)

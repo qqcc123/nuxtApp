@@ -43,7 +43,7 @@ module.exports =
 /******/
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("./" + ({"1":"components/carousel","2":"components/carousel-cov-touch","3":"components/carousel-vue-slide","4":"components/home-myheader","5":"components/nuxt-logo","6":"components/tutorial","7":"pages/About/index","8":"pages/index","9":"pages/login"}[chunkId]||chunkId) + ".js");
+/******/ 			var chunk = require("./" + ({"1":"components/carousel","2":"components/carousel-cov-touch","3":"components/carousel-vue-slide","4":"components/home-classification","5":"components/home-myheader","6":"components/nuxt-logo","7":"components/tutorial","8":"pages/About/index","9":"pages/coursehome","10":"pages/index","11":"pages/login"}[chunkId]||chunkId) + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -115,7 +115,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -132,6 +132,39 @@ module.exports = require("ufo");
 
 /***/ }),
 /* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COURSE_PARAMS", function() { return COURSE_PARAMS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COURSE_ARR", function() { return COURSE_ARR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TOUCHEND", function() { return TOUCHEND; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COURSE_TYPE", function() { return COURSE_TYPE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COURSE_ID", function() { return COURSE_ID; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COURSE_SORT", function() { return COURSE_SORT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COURSE_DETAIL", function() { return COURSE_DETAIL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CART", function() { return CART; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ORDERDATA", function() { return ORDERDATA; });
+const COURSE_PARAMS = 'COURSE_PARAMS'; // 课程筛选列表
+
+const COURSE_ARR = 'COURSE_ARR'; // 课程筛选列表
+
+const TOUCHEND = 'TOUCHEND'; // 课程筛选列表
+
+const COURSE_TYPE = 'COURSE_TYPE'; // 课程筛选类型
+
+const COURSE_ID = 'COURSE_ID'; // 课程筛选类型
+
+const COURSE_SORT = 'COURSE_SORT'; // 课程排序
+
+const COURSE_DETAIL = 'COURSE_DETAIL'; // 课程排序
+
+const CART = 'CART'; // 购物车
+
+const ORDERDATA = 'ORDERDATA'; // 订单信息
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -237,13 +270,19 @@ function normalizeComponent (
 
 
 /***/ }),
-/* 3 */
+/* 4 */
+/***/ (function(module, exports) {
+
+module.exports = require("vuex");
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("vue-no-ssr");
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -343,7 +382,7 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -466,90 +505,251 @@ function renderStyles (styles) {
 
 
 /***/ }),
-/* 6 */
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: ./store/mutation-types.js
+var mutation_types = __webpack_require__(2);
+
+// CONCATENATED MODULE: ./config/common.js
+/**
+ * 存储localStorage
+ */
+const setStore = (name, content) => {
+  if (!name) return;
+
+  if (typeof content !== 'string') {
+    content = JSON.stringify(content);
+  }
+
+  window.localStorage.setItem(name, content);
+};
+/**
+ * 获取localStorage
+ */
+
+const getStore = name => {
+  if (!name) return;
+  return window.localStorage.getItem(name);
+};
+/**
+ * 删除localStorage
+ */
+
+const removeStore = name => {
+  if (!name) return;
+  window.localStorage.removeItem(name);
+};
+/**
+ * 过滤周
+ */
+
+const getWeek = arr => {
+  if (process.BROWSER_BUILD) {
+    let weekArr = [];
+    arr.forEach(function (element) {
+      switch (element) {
+        case '1':
+          weekArr.push('一');
+          break;
+
+        case '2':
+          weekArr.push('二');
+          break;
+
+        case '3':
+          weekArr.push('三');
+          break;
+
+        case '4':
+          weekArr.push('四');
+          break;
+
+        case '5':
+          weekArr.push('五');
+          break;
+
+        case '6':
+          weekArr.push('六');
+          break;
+
+        case '7':
+          weekArr.push('日');
+          break;
+
+        default:
+          break;
+      }
+    });
+    return '每周' + weekArr.join(',') + '上课';
+  }
+};
+/**
+ * 导出周几上课
+ */
+
+
+const filterWeek = value => {
+  if (process.BROWSER_BUILD) {
+    let week = [];
+
+    if (value.indexOf('@') !== -1) {
+      let arr = value.split('@');
+      arr.forEach(function (element) {
+        week.push(element.slice(2));
+      }, undefined);
+      return getWeek(week);
+    } else {
+      week.push(value.slice(2));
+      return getWeek(week);
+    }
+  }
+};
+// CONCATENATED MODULE: ./store/mutations.js
+
+
+/* harmony default export */ var mutations = __webpack_exports__["default"] = ({
+  [mutation_types["COURSE_PARAMS"]](state, value) {
+    state.coursename = value;
+  },
+
+  // 如果不是第一次请求 就不要在累加了 好把～
+  [mutation_types["COURSE_ARR"]](state, array) {
+    if (parseInt(array.offset) !== 0) {
+      state.courseArr = [...state.courseArr, ...array.data];
+    } else {
+      // 只有在第一次请求的时候在累加  好吧
+      state.courseArr = array.data;
+    }
+  },
+
+  // 是否限时暂无更多
+  [mutation_types["TOUCHEND"]](state, value) {
+    state.touchend = value;
+  },
+
+  // 当前课程列表请求参数 课程id
+  [mutation_types["COURSE_ID"]](state, value) {
+    state.courseId = value;
+  },
+
+  // 当前课程列表请求的 级别
+  [mutation_types["COURSE_TYPE"]](state, value) {
+    state.coursetype = value;
+  },
+
+  // 当前课程列表排序方式
+  [mutation_types["COURSE_SORT"]](state, value) {
+    state.courseSort = value;
+  },
+
+  // 课程详情
+  [mutation_types["COURSE_DETAIL"]](state, value) {
+    state.courseDetail = value; // 存入locaStore
+
+    setStore('courseDetail', value);
+  },
+
+  [mutation_types["CART"]](state, value) {
+    state.cart = value;
+  },
+
+  // 订单信息
+  [mutation_types["ORDERDATA"]](state, value) {
+    state.orderData = value;
+  }
+
+});
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("vue-client-only");
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("vue-router");
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(16);
+var content = __webpack_require__(19);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
-var add = __webpack_require__(5).default
+var add = __webpack_require__(7).default
 module.exports.__inject__ = function (context) {
   add("6ac3c623", content, true, context)
 };
 
 /***/ }),
-/* 9 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(18);
+var content = __webpack_require__(21);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
-var add = __webpack_require__(5).default
+var add = __webpack_require__(7).default
 module.exports.__inject__ = function (context) {
   add("7e56e4e3", content, true, context)
 };
 
 /***/ }),
-/* 10 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(20);
+var content = __webpack_require__(23);
 if(content.__esModule) content = content.default;
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
-var add = __webpack_require__(5).default
+var add = __webpack_require__(7).default
 module.exports.__inject__ = function (context) {
   add("dab10682", content, true, context)
 };
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("node-fetch");
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("vue-meta");
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(14);
-module.exports = __webpack_require__(21);
+__webpack_require__(17);
+module.exports = __webpack_require__(25);
 
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports) {
 
 global.installComponents = function (component, components) {
@@ -593,22 +793,22 @@ function provideFunctionalComponents(component, components) {
 
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_error_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_error_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_error_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_error_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_error_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_error_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(6);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.i, ".__nuxt-error-page{padding:1rem;background:#f7f8fb;color:#47494e;text-align:center;display:flex;justify-content:center;align-items:center;flex-direction:column;font-family:sans-serif;font-weight:100!important;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;position:absolute;top:0;left:0;right:0;bottom:0}.__nuxt-error-page .error{max-width:450px}.__nuxt-error-page .title{font-size:1.5rem;margin-top:15px;color:#47494e;margin-bottom:8px}.__nuxt-error-page .description{color:#7f828b;line-height:21px;margin-bottom:10px}.__nuxt-error-page a{color:#7f828b!important;text-decoration:none}.__nuxt-error-page .logo{position:fixed;left:12px;bottom:12px}", ""]);
@@ -617,22 +817,22 @@ module.exports = ___CSS_LOADER_EXPORT___;
 
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_loading_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_loading_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_loading_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_loading_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_loading_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_nuxt_loading_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(6);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.i, ".nuxt-progress{position:fixed;top:0;left:0;right:0;height:2px;width:0;opacity:1;transition:width .1s,opacity .4s;background-color:#3b8070;z-index:999999}.nuxt-progress.nuxt-progress-notransition{transition:none}.nuxt-progress-failed{background-color:red}", ""]);
@@ -641,22 +841,22 @@ module.exports = ___CSS_LOADER_EXPORT___;
 
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mystyle_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mystyle_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(13);
 /* harmony import */ var _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mystyle_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mystyle_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mystyle_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_3_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_3_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_3_oneOf_1_2_node_modules_nuxt_components_dist_loader_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_mystyle_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(4);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(6);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.i, "html{font-family:\"Source Sans Pro\",-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Helvetica Neue\",Arial,sans-serif;font-size:16px;word-spacing:1px;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;box-sizing:border-box}*,:after,:before{box-sizing:border-box;margin:0}.button--green{display:inline-block;border-radius:4px;border:1px solid #3b8070;color:#3b8070;text-decoration:none;padding:10px 30px}.button--green:hover{color:#fff;background-color:#3b8070}.button--grey{display:inline-block;border-radius:4px;border:1px solid #35495e;color:#35495e;text-decoration:none;padding:10px 30px;margin-left:15px}.button--grey:hover{color:#fff;background-color:#35495e}", ""]);
@@ -665,7 +865,48 @@ module.exports = ___CSS_LOADER_EXPORT___;
 
 
 /***/ }),
-/* 21 */
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuex__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _mutations_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+
+
+const state = {
+  // 选中的参数
+  coursename: '艺术',
+  // 是否显示暂无更多数据
+  touchend: false,
+  // 课程列表组件容器
+  courseArr: [],
+  // 课程id
+  courseId: '15963587',
+  // 课程类型
+  coursetype: '1',
+  // 当前的课程列表排序方式啊
+  courseSort: '1',
+  // 课程详情
+  courseDetail: {},
+  // 购物车
+  cart: {},
+  // 订单信息
+  orderData: {}
+};
+
+const createStore = () => {
+  return new vuex__WEBPACK_IMPORTED_MODULE_0___default.a.Store({
+    state,
+    mutations: _mutations_js__WEBPACK_IMPORTED_MODULE_1__["default"]
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (createStore);
+
+/***/ }),
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -680,6 +921,7 @@ __webpack_require__.d(components_namespaceObject, "Tutorial", function() { retur
 __webpack_require__.d(components_namespaceObject, "Carousel", function() { return Carousel; });
 __webpack_require__.d(components_namespaceObject, "CarouselCovTouch", function() { return CarouselCovTouch; });
 __webpack_require__.d(components_namespaceObject, "CarouselVueSlide", function() { return CarouselVueSlide; });
+__webpack_require__.d(components_namespaceObject, "HomeClassification", function() { return HomeClassification; });
 __webpack_require__.d(components_namespaceObject, "HomeMyheader", function() { return HomeMyheader; });
 
 // EXTERNAL MODULE: external "vue"
@@ -690,7 +932,7 @@ var external_vue_default = /*#__PURE__*/__webpack_require__.n(external_vue_);
 var external_ufo_ = __webpack_require__(1);
 
 // EXTERNAL MODULE: external "node-fetch"
-var external_node_fetch_ = __webpack_require__(11);
+var external_node_fetch_ = __webpack_require__(14);
 var external_node_fetch_default = /*#__PURE__*/__webpack_require__.n(external_node_fetch_);
 
 // CONCATENATED MODULE: ./.nuxt/middleware.js
@@ -888,6 +1130,7 @@ async function setContext(app, context) {
       isDev: false,
       isHMR: false,
       app,
+      store: app.store,
       payload: context.payload,
       error: context.error,
       base: app.router.options.base,
@@ -1376,20 +1619,24 @@ async function serverPrefetch() {
   }
 
 });
+// EXTERNAL MODULE: external "vuex"
+var external_vuex_ = __webpack_require__(4);
+var external_vuex_default = /*#__PURE__*/__webpack_require__.n(external_vuex_);
+
 // EXTERNAL MODULE: external "vue-meta"
-var external_vue_meta_ = __webpack_require__(12);
+var external_vue_meta_ = __webpack_require__(15);
 var external_vue_meta_default = /*#__PURE__*/__webpack_require__.n(external_vue_meta_);
 
 // EXTERNAL MODULE: external "vue-client-only"
-var external_vue_client_only_ = __webpack_require__(6);
+var external_vue_client_only_ = __webpack_require__(9);
 var external_vue_client_only_default = /*#__PURE__*/__webpack_require__.n(external_vue_client_only_);
 
 // EXTERNAL MODULE: external "vue-no-ssr"
-var external_vue_no_ssr_ = __webpack_require__(3);
+var external_vue_no_ssr_ = __webpack_require__(5);
 var external_vue_no_ssr_default = /*#__PURE__*/__webpack_require__.n(external_vue_no_ssr_);
 
 // EXTERNAL MODULE: external "vue-router"
-var external_vue_router_ = __webpack_require__(7);
+var external_vue_router_ = __webpack_require__(10);
 var external_vue_router_default = /*#__PURE__*/__webpack_require__.n(external_vue_router_);
 
 // CONCATENATED MODULE: ./.nuxt/router.scrollBehavior.js
@@ -1469,11 +1716,13 @@ function shouldScrollToTop(route) {
 
 
 
-const _d28dac66 = () => interopDefault(__webpack_require__.e(/* import() | pages/About/index */ 7).then(__webpack_require__.bind(null, 44)));
+const _d28dac66 = () => interopDefault(__webpack_require__.e(/* import() | pages/About/index */ 8).then(__webpack_require__.bind(null, 55)));
 
-const _48e5d1de = () => interopDefault(__webpack_require__.e(/* import() | pages/login */ 9).then(__webpack_require__.bind(null, 45)));
+const _2fbadd82 = () => interopDefault(__webpack_require__.e(/* import() | pages/coursehome */ 9).then(__webpack_require__.bind(null, 56)));
 
-const _11e573fa = () => interopDefault(__webpack_require__.e(/* import() | pages/index */ 8).then(__webpack_require__.bind(null, 46)));
+const _48e5d1de = () => interopDefault(__webpack_require__.e(/* import() | pages/login */ 11).then(__webpack_require__.bind(null, 57)));
+
+const _11e573fa = () => interopDefault(__webpack_require__.e(/* import() | pages/index */ 10).then(__webpack_require__.bind(null, 58)));
 
 const emptyFn = () => {};
 
@@ -1488,6 +1737,10 @@ const routerOptions = {
     path: "/About",
     component: _d28dac66,
     name: "About"
+  }, {
+    path: "/coursehome",
+    component: _2fbadd82,
+    name: "coursehome"
   }, {
     path: "/login",
     component: _48e5d1de,
@@ -1670,7 +1923,7 @@ var staticRenderFns = []
 // CONCATENATED MODULE: ./.nuxt/components/nuxt-error.vue?vue&type=script&lang=js&
  /* harmony default export */ var components_nuxt_errorvue_type_script_lang_js_ = (nuxt_errorvue_type_script_lang_js_); 
 // EXTERNAL MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
-var componentNormalizer = __webpack_require__(2);
+var componentNormalizer = __webpack_require__(3);
 
 // CONCATENATED MODULE: ./.nuxt/components/nuxt-error.vue
 
@@ -1678,7 +1931,7 @@ var componentNormalizer = __webpack_require__(2);
 
 function injectStyles (context) {
   
-  var style0 = __webpack_require__(15)
+  var style0 = __webpack_require__(18)
 if (style0.__inject__) style0.__inject__(context)
 
 }
@@ -1982,7 +2235,7 @@ var nuxt_loading_render, nuxt_loading_staticRenderFns
 
 function nuxt_loading_injectStyles (context) {
   
-  var style0 = __webpack_require__(17)
+  var style0 = __webpack_require__(20)
 if (style0.__inject__) style0.__inject__(context)
 
 }
@@ -2013,7 +2266,7 @@ var mystylevue_type_template_id_4ce82c89_staticRenderFns = []
 var script = {}
 function mystyle_injectStyles (context) {
   
-  var style0 = __webpack_require__(19)
+  var style0 = __webpack_require__(22)
 if (style0.__inject__) style0.__inject__(context)
 
 }
@@ -2240,13 +2493,141 @@ const layouts = {
     NuxtLoading: nuxt_loading
   }
 });
+// CONCATENATED MODULE: ./.nuxt/store.js
+
+
+external_vue_default.a.use(external_vuex_default.a);
+const VUEX_PROPERTIES = ['state', 'getters', 'actions', 'mutations'];
+let store_store = {};
+
+(function updateModules() {
+  store_store = normalizeRoot(__webpack_require__(24), 'store/index.js'); // If store is an exported method = classic mode (deprecated)
+  // Enforce store modules
+
+  store_store.modules = store_store.modules || {};
+  resolveStoreModules(__webpack_require__(2), 'mutation-types.js');
+  resolveStoreModules(__webpack_require__(8), 'mutations.js'); // If the environment supports hot reloading...
+})(); // createStore
+
+
+const createStore = store_store instanceof Function ? store_store : () => {
+  return new external_vuex_default.a.Store(Object.assign({
+    strict: "production" !== 'production'
+  }, store_store));
+};
+
+function normalizeRoot(moduleData, filePath) {
+  moduleData = moduleData.default || moduleData;
+
+  if (moduleData.commit) {
+    throw new Error(`[nuxt] ${filePath} should export a method that returns a Vuex instance.`);
+  }
+
+  if (typeof moduleData !== 'function') {
+    // Avoid TypeError: setting a property that has only a getter when overwriting top level keys
+    moduleData = Object.assign({}, moduleData);
+  }
+
+  return normalizeModule(moduleData, filePath);
+}
+
+function normalizeModule(moduleData, filePath) {
+  if (moduleData.state && typeof moduleData.state !== 'function') {
+    console.warn(`'state' should be a method that returns an object in ${filePath}`);
+    const state = Object.assign({}, moduleData.state); // Avoid TypeError: setting a property that has only a getter when overwriting top level keys
+
+    moduleData = Object.assign({}, moduleData, {
+      state: () => state
+    });
+  }
+
+  return moduleData;
+}
+
+function resolveStoreModules(moduleData, filename) {
+  moduleData = moduleData.default || moduleData; // Remove store src + extension (./foo/index.js -> foo/index)
+
+  const namespace = filename.replace(/\.(js|mjs)$/, '');
+  const namespaces = namespace.split('/');
+  let moduleName = namespaces[namespaces.length - 1];
+  const filePath = `store/${filename}`;
+  moduleData = moduleName === 'state' ? normalizeState(moduleData, filePath) : normalizeModule(moduleData, filePath); // If src is a known Vuex property
+
+  if (VUEX_PROPERTIES.includes(moduleName)) {
+    const property = moduleName;
+    const propertyStoreModule = getStoreModule(store_store, namespaces, {
+      isProperty: true
+    }); // Replace state since it's a function
+
+    mergeProperty(propertyStoreModule, moduleData, property);
+    return;
+  } // If file is foo/index.js, it should be saved as foo
+
+
+  const isIndexModule = moduleName === 'index';
+
+  if (isIndexModule) {
+    namespaces.pop();
+    moduleName = namespaces[namespaces.length - 1];
+  }
+
+  const storeModule = getStoreModule(store_store, namespaces);
+
+  for (const property of VUEX_PROPERTIES) {
+    mergeProperty(storeModule, moduleData[property], property);
+  }
+
+  if (moduleData.namespaced === false) {
+    delete storeModule.namespaced;
+  }
+}
+
+function normalizeState(moduleData, filePath) {
+  if (typeof moduleData !== 'function') {
+    console.warn(`${filePath} should export a method that returns an object`);
+    const state = Object.assign({}, moduleData);
+    return () => state;
+  }
+
+  return normalizeModule(moduleData, filePath);
+}
+
+function getStoreModule(storeModule, namespaces, {
+  isProperty = false
+} = {}) {
+  // If ./mutations.js
+  if (!namespaces.length || isProperty && namespaces.length === 1) {
+    return storeModule;
+  }
+
+  const namespace = namespaces.shift();
+  storeModule.modules[namespace] = storeModule.modules[namespace] || {};
+  storeModule.modules[namespace].namespaced = true;
+  storeModule.modules[namespace].modules = storeModule.modules[namespace].modules || {};
+  return getStoreModule(storeModule.modules[namespace], namespaces, {
+    isProperty
+  });
+}
+
+function mergeProperty(storeModule, moduleData, property) {
+  if (!moduleData) {
+    return;
+  }
+
+  if (property === 'state') {
+    storeModule.state = moduleData || storeModule.state;
+  } else {
+    storeModule[property] = Object.assign({}, storeModule[property], moduleData);
+  }
+}
 // CONCATENATED MODULE: ./.nuxt/components/index.js
-const NuxtLogo = () => __webpack_require__.e(/* import() | components/nuxt-logo */ 5).then(__webpack_require__.bind(null, 48)).then(c => wrapFunctional(c.default || c));
-const Tutorial = () => __webpack_require__.e(/* import() | components/tutorial */ 6).then(__webpack_require__.bind(null, 47)).then(c => wrapFunctional(c.default || c));
-const Carousel = () => __webpack_require__.e(/* import() | components/carousel */ 1).then(__webpack_require__.bind(null, 33)).then(c => wrapFunctional(c.default || c));
-const CarouselCovTouch = () => __webpack_require__.e(/* import() | components/carousel-cov-touch */ 2).then(__webpack_require__.bind(null, 23)).then(c => wrapFunctional(c.default || c));
-const CarouselVueSlide = () => __webpack_require__.e(/* import() | components/carousel-vue-slide */ 3).then(__webpack_require__.bind(null, 28)).then(c => wrapFunctional(c.default || c));
-const HomeMyheader = () => __webpack_require__.e(/* import() | components/home-myheader */ 4).then(__webpack_require__.bind(null, 37)).then(c => wrapFunctional(c.default || c)); // nuxt/nuxt.js#8607
+const NuxtLogo = () => __webpack_require__.e(/* import() | components/nuxt-logo */ 6).then(__webpack_require__.bind(null, 60)).then(c => wrapFunctional(c.default || c));
+const Tutorial = () => __webpack_require__.e(/* import() | components/tutorial */ 7).then(__webpack_require__.bind(null, 59)).then(c => wrapFunctional(c.default || c));
+const Carousel = () => __webpack_require__.e(/* import() | components/carousel */ 1).then(__webpack_require__.bind(null, 40)).then(c => wrapFunctional(c.default || c));
+const CarouselCovTouch = () => __webpack_require__.e(/* import() | components/carousel-cov-touch */ 2).then(__webpack_require__.bind(null, 27)).then(c => wrapFunctional(c.default || c));
+const CarouselVueSlide = () => __webpack_require__.e(/* import() | components/carousel-vue-slide */ 3).then(__webpack_require__.bind(null, 33)).then(c => wrapFunctional(c.default || c));
+const HomeClassification = () => __webpack_require__.e(/* import() | components/home-classification */ 4).then(__webpack_require__.bind(null, 46)).then(c => wrapFunctional(c.default || c));
+const HomeMyheader = () => __webpack_require__.e(/* import() | components/home-myheader */ 5).then(__webpack_require__.bind(null, 45)).then(c => wrapFunctional(c.default || c)); // nuxt/nuxt.js#8607
 
 function wrapFunctional(options) {
   if (!options || !options.functional) {
@@ -2286,6 +2667,8 @@ for (const name in components_namespaceObject) {
   external_vue_default.a.component('Lazy' + name, components_namespaceObject[name]);
 }
 // CONCATENATED MODULE: ./.nuxt/index.js
+
+
 
 
 
@@ -2343,9 +2726,23 @@ const defaultTransition = {
   "appearActiveClass": "appear-active",
   "appearToClass": "appear-to"
 };
+const originalRegisterModule = external_vuex_default.a.Store.prototype.registerModule;
+
+function registerModule(path, rawModule, options = {}) {
+  const preserveState =  false && (false);
+  return originalRegisterModule.call(this, path, rawModule, {
+    preserveState,
+    ...options
+  });
+}
 
 async function createApp(ssrContext, config = {}) {
-  const router = await createRouter(ssrContext, config); // Create Root instance
+  const router = await createRouter(ssrContext, config);
+  const store = createStore(ssrContext); // Add this.$router into store actions/mutations
+
+  store.$router = router; // Fix SSR caveat https://github.com/nuxt/nuxt.js/issues/3757#issuecomment-414689141
+
+  store.registerModule = registerModule; // Create Root instance
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
 
@@ -2379,6 +2776,7 @@ async function createApp(ssrContext, config = {}) {
       "style": [],
       "script": []
     },
+    store,
     router,
     nuxt: {
       defaultTransition,
@@ -2431,7 +2829,9 @@ async function createApp(ssrContext, config = {}) {
 
     },
     ...App
-  };
+  }; // Make app available into store via this.app
+
+  store.app = app;
   const next = ssrContext ? ssrContext.next : location => app.router.push(location); // Resolve route
 
   let route;
@@ -2445,6 +2845,7 @@ async function createApp(ssrContext, config = {}) {
 
 
   await setContext(app, {
+    store,
     route,
     next,
     error: app.nuxt.error.bind(app),
@@ -2470,8 +2871,10 @@ async function createApp(ssrContext, config = {}) {
 
     if (!app.context[key]) {
       app.context[key] = value;
-    } // Check if plugin not already installed
+    } // Add into store
 
+
+    store[key] = app[key]; // Check if plugin not already installed
 
     const installKey = '__nuxt_' + key + '_installed__';
 
@@ -2494,7 +2897,10 @@ async function createApp(ssrContext, config = {}) {
   } // Inject runtime config as $config
 
 
-  inject('config', config); // Add enablePreview(previewData = {}) in context for plugins
+  inject('config', config);
+
+  if (false) {} // Add enablePreview(previewData = {}) in context for plugins
+
 
   if (false) {} // Plugin execution
 
@@ -2532,6 +2938,7 @@ async function createApp(ssrContext, config = {}) {
     });
   });
   return {
+    store,
     app,
     router
   };
@@ -2634,6 +3041,7 @@ const createNext = ssrContext => opts => {
     data: [],
     fetch: {},
     error: null,
+    state: null,
     serverRendered: true,
     routePath: ''
   };
@@ -2649,7 +3057,8 @@ const createNext = ssrContext => opts => {
 
   const {
     app,
-    router
+    router,
+    store
   } = await createApp(ssrContext, ssrContext.runtimeConfig.private);
 
   const _app = new external_vue_default.a(app); // Add ssr route path to nuxt context so we can account for page navigation between ssr and csr
@@ -2667,6 +3076,11 @@ const createNext = ssrContext => opts => {
       Components,
       nuxtState: ssrContext.nuxt
     })));
+
+    ssrContext.rendered = () => {
+      // Add the state from the vuex store
+      ssrContext.nuxt.state = store.state;
+    };
   };
 
   const renderErrorPage = async () => {
@@ -2699,8 +3113,30 @@ const createNext = ssrContext => opts => {
 
   const Components = getMatchedComponents(app.context.route);
   /*
+  ** Dispatch store nuxtServerInit
+  */
+
+  if (store._actions && store._actions.nuxtServerInit) {
+    try {
+      await store.dispatch('nuxtServerInit', app.context);
+    } catch (err) {
+      console.debug('Error occurred when calling nuxtServerInit: ', err.message);
+      throw err;
+    }
+  } // ...If there is a redirect or an error, stop the process
+
+
+  if (ssrContext.redirected) {
+    return noopApp();
+  }
+
+  if (ssrContext.nuxt.error) {
+    return renderErrorPage();
+  }
+  /*
   ** Call global middleware (nuxt.config.js)
   */
+
 
   let midd = [];
   midd = midd.map(name => {

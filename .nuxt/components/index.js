@@ -3,6 +3,7 @@ export const Tutorial = () => import('../..\\components\\Tutorial.vue' /* webpac
 export const Carousel = () => import('../..\\components\\carousel\\Carousel.vue' /* webpackChunkName: "components/carousel" */).then(c => wrapFunctional(c.default || c))
 export const CarouselCovTouch = () => import('../..\\components\\carousel\\cov-touch.js' /* webpackChunkName: "components/carousel-cov-touch" */).then(c => wrapFunctional(c.default || c))
 export const CarouselVueSlide = () => import('../..\\components\\carousel\\vue-slide.vue' /* webpackChunkName: "components/carousel-vue-slide" */).then(c => wrapFunctional(c.default || c))
+export const HomeClassification = () => import('../..\\components\\home\\Classification.vue' /* webpackChunkName: "components/home-classification" */).then(c => wrapFunctional(c.default || c))
 export const HomeMyheader = () => import('../..\\components\\home\\Myheader.vue' /* webpackChunkName: "components/home-myheader" */).then(c => wrapFunctional(c.default || c))
 
 // nuxt/nuxt.js#8607

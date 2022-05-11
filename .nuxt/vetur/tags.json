@@ -14,6 +14,9 @@
   "CarouselVueSlide": {
     "description": "Auto imported from components/carousel/vue-slide.vue"
   },
+  "HomeClassification": {
+    "description": "Auto imported from components/home/Classification.vue"
+  },
   "HomeMyheader": {
     "description": "Auto imported from components/home/Myheader.vue"
   }
