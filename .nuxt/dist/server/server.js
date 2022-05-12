@@ -1716,13 +1716,13 @@ function shouldScrollToTop(route) {
 
 
 
-const _d28dac66 = () => interopDefault(__webpack_require__.e(/* import() | pages/About/index */ 8).then(__webpack_require__.bind(null, 55)));
+const _d28dac66 = () => interopDefault(__webpack_require__.e(/* import() | pages/About/index */ 8).then(__webpack_require__.bind(null, 57)));
 
 const _2fbadd82 = () => interopDefault(__webpack_require__.e(/* import() | pages/coursehome */ 9).then(__webpack_require__.bind(null, 56)));
 
-const _48e5d1de = () => interopDefault(__webpack_require__.e(/* import() | pages/login */ 11).then(__webpack_require__.bind(null, 57)));
+const _48e5d1de = () => interopDefault(__webpack_require__.e(/* import() | pages/login */ 11).then(__webpack_require__.bind(null, 58)));
 
-const _11e573fa = () => interopDefault(__webpack_require__.e(/* import() | pages/index */ 10).then(__webpack_require__.bind(null, 58)));
+const _11e573fa = () => interopDefault(__webpack_require__.e(/* import() | pages/index */ 10).then(__webpack_require__.bind(null, 59)));
 
 const emptyFn = () => {};
 
@@ -2621,13 +2621,13 @@ function mergeProperty(storeModule, moduleData, property) {
   }
 }
 // CONCATENATED MODULE: ./.nuxt/components/index.js
-const NuxtLogo = () => __webpack_require__.e(/* import() | components/nuxt-logo */ 6).then(__webpack_require__.bind(null, 60)).then(c => wrapFunctional(c.default || c));
-const Tutorial = () => __webpack_require__.e(/* import() | components/tutorial */ 7).then(__webpack_require__.bind(null, 59)).then(c => wrapFunctional(c.default || c));
-const Carousel = () => __webpack_require__.e(/* import() | components/carousel */ 1).then(__webpack_require__.bind(null, 40)).then(c => wrapFunctional(c.default || c));
-const CarouselCovTouch = () => __webpack_require__.e(/* import() | components/carousel-cov-touch */ 2).then(__webpack_require__.bind(null, 27)).then(c => wrapFunctional(c.default || c));
-const CarouselVueSlide = () => __webpack_require__.e(/* import() | components/carousel-vue-slide */ 3).then(__webpack_require__.bind(null, 33)).then(c => wrapFunctional(c.default || c));
-const HomeClassification = () => __webpack_require__.e(/* import() | components/home-classification */ 4).then(__webpack_require__.bind(null, 46)).then(c => wrapFunctional(c.default || c));
-const HomeMyheader = () => __webpack_require__.e(/* import() | components/home-myheader */ 5).then(__webpack_require__.bind(null, 45)).then(c => wrapFunctional(c.default || c)); // nuxt/nuxt.js#8607
+const NuxtLogo = () => __webpack_require__.e(/* import() | components/nuxt-logo */ 6).then(__webpack_require__.bind(null, 61)).then(c => wrapFunctional(c.default || c));
+const Tutorial = () => __webpack_require__.e(/* import() | components/tutorial */ 7).then(__webpack_require__.bind(null, 60)).then(c => wrapFunctional(c.default || c));
+const Carousel = () => __webpack_require__.e(/* import() | components/carousel */ 1).then(__webpack_require__.bind(null, 41)).then(c => wrapFunctional(c.default || c));
+const CarouselCovTouch = () => __webpack_require__.e(/* import() | components/carousel-cov-touch */ 2).then(__webpack_require__.bind(null, 28)).then(c => wrapFunctional(c.default || c));
+const CarouselVueSlide = () => __webpack_require__.e(/* import() | components/carousel-vue-slide */ 3).then(__webpack_require__.bind(null, 34)).then(c => wrapFunctional(c.default || c));
+const HomeClassification = () => __webpack_require__.e(/* import() | components/home-classification */ 4).then(__webpack_require__.bind(null, 47)).then(c => wrapFunctional(c.default || c));
+const HomeMyheader = () => __webpack_require__.e(/* import() | components/home-myheader */ 5).then(__webpack_require__.bind(null, 46)).then(c => wrapFunctional(c.default || c)); // nuxt/nuxt.js#8607
 
 function wrapFunctional(options) {
   if (!options || !options.functional) {
@@ -3299,6 +3299,12 @@ const createNext = ssrContext => opts => {
   await beforeRender();
   return _app;
 });
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ })
 /******/ ]);
